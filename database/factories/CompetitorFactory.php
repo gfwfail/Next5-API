@@ -2,9 +2,18 @@
 
 use Faker\Generator as Faker;
 
-$factory->define(App\Competitor::class, function (Faker $faker) {
+$countries = collect([
+    'AU',
+    'US',
+    'UK',
+    'HK',
+    'NZ'
+
+]);
+
+$factory->define(App\Competitor::class, function (Faker $faker) use ($countries) {
     return [
-        'country'=>$faker->countryCode,
-        'name'=>$faker->name
+        'country' => $countries->random(),
+        'name'    => $faker->name
     ];
 });
